@@ -4,7 +4,7 @@ import { Colors, Metrics } from 'App/Theme'
 export default StyleSheet.create({
   card: {
     width: Metrics.screenWidth / 2.2,
-    height: Metrics.screenWidth / 1.5,
+    height: Metrics.screenWidth / 1.25,
     backgroundColor: Colors.white,
     shadowColor: "#000",
     shadowOffset: {
@@ -18,7 +18,7 @@ export default StyleSheet.create({
   },
   image: {
     width: Metrics.screenWidth / 2.2,
-    aspectRatio: 2 / 2.5
+    aspectRatio: 2 / 3
   },
   titleContainer: {
     alignItems: 'center',
