@@ -15,7 +15,7 @@ const { Types, Creators } = createActions({
 /* ------------- Reducer ------------- */
 
 const INITIAL_STATE = Immutable({
-  trendings: {
+  trending: {
     daily: {
       data: [],
       loading: false,
@@ -30,8 +30,8 @@ const INITIAL_STATE = Immutable({
 })
 
 const getDailyTrendingMoviesInProgress = (state, { }) => state.merge({
-  trendings: state.trendings.merge({
-    daily: state.trendings.daily.merge({
+  trending: state.trending.merge({
+    daily: state.trending.daily.merge({
       data: [],
       loading: true,
       error: false
@@ -40,8 +40,8 @@ const getDailyTrendingMoviesInProgress = (state, { }) => state.merge({
 })
 
 const getDailyTrendingMoviesSucceeded = (state, { movies }) => state.merge({
-  trendings: state.trendings.merge({
-    daily: state.trendings.daily.merge({
+  trending: state.trending.merge({
+    daily: state.trending.daily.merge({
       data: movies,
       loading: false,
       error: false
@@ -50,8 +50,8 @@ const getDailyTrendingMoviesSucceeded = (state, { movies }) => state.merge({
 })
 
 const getDailyTrendingMoviesFailed = (state, { error }) => state.merge({
-  trendings: state.trendings.merge({
-    daily: state.trendings.daily.merge({
+  trending: state.trending.merge({
+    daily: state.trending.daily.merge({
       loading: false,
       error
     })
@@ -59,8 +59,8 @@ const getDailyTrendingMoviesFailed = (state, { error }) => state.merge({
 })
 
 const getWeeklyTrendingMoviesInProgress = (state, { }) => state.merge({
-  trendings: state.trendings.merge({
-    weekly: state.trendings.weekly.merge({
+  trending: state.trending.merge({
+    weekly: state.trending.weekly.merge({
       loading: true,
       error: false
     })
@@ -68,8 +68,8 @@ const getWeeklyTrendingMoviesInProgress = (state, { }) => state.merge({
 })
 
 const getWeeklyTrendingMoviesSucceeded = (state, { movies }) => state.merge({
-  trendings: state.trendings.merge({
-    weekly: state.trendings.weekly.merge({
+  trending: state.trending.merge({
+    weekly: state.trending.weekly.merge({
       data: movies,
       loading: false,
       error: false
@@ -78,8 +78,8 @@ const getWeeklyTrendingMoviesSucceeded = (state, { movies }) => state.merge({
 })
 
 const getWeeklyTrendingMoviesFailed = (state, { error }) => state.merge({
-  trendings: state.trendings.merge({
-    weekly: state.trendings.weekly.merge({
+  trending: state.trending.merge({
+    weekly: state.trending.weekly.merge({
       loading: false,
       error
     })

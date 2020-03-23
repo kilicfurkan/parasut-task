@@ -1,7 +1,8 @@
 import React from 'react'
-import { SafeAreaView, Text } from 'react-native'
+import { SafeAreaView, Text, ActivityIndicator } from 'react-native'
 import { connect } from 'react-redux'
 
+import MovieList from '../../Containers/MovieList'
 import TabBar from '../../Components/UI/TabBar'
 
 import MovieActions from '../../Redux/MovieRedux'
@@ -25,17 +26,42 @@ class MovieListScreen extends React.Component {
     this.setState({ selectedTab })
   }
 
+  renderDailyMovieList = () => {
+    const { daily } = this.props.movie.trending
+
+    if (daily.loading) {
+      return <ActivityIndicator style={{ flex: 1 }} />
+    }
+
+    return <MovieList data={daily.data} />
+  }
+
+  renderWeeklyMovieList = () => {
+    const { weekly } = this.props.movie.trending
+
+    if (weekly.loading) {
+      return <ActivityIndicator style={{ flex: 1 }} />
+    }
+
+    return <MovieList data={weekly.data} />
+  }
+
   render() {
     const { selectedTab } = this.state
     console.log(this.props.movie)
-    
+
     return (
-      <SafeAreaView>
+      <SafeAreaView style={{ flex: 1 }}>
         <TabBar
           tabs={tabs}
           selectedTab={selectedTab}
           onPress={this.handleChangeTab}
         />
+        {selectedTab == 'Daily' ? (
+          this.renderDailyMovieList()
+        ) :
+          this.renderWeeklyMovieList()
+        }
       </SafeAreaView>
     )
   }
