@@ -48,7 +48,6 @@ class MovieListScreen extends React.Component {
 
   render() {
     const { selectedTab } = this.state
-    console.log(this.props.movie)
 
     return (
       <SafeAreaView style={{ flex: 1 }}>
