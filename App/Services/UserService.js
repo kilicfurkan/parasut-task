@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { Config } from 'App/Config'
+import { API_URL, API_TOKEN } from 'react-native-dotenv'
 import { is, curryN, gte } from 'ramda'
 
 const isWithin = curryN(3, (min, max, value) => {
@@ -17,12 +17,13 @@ const userApiClient = axios.create({
   /**
    * Import the config from the App/Config/index.js file
    */
-  baseURL: Config.API_URL,
+  baseURL: API_URL,
   headers: {
+    Authorization: `Bearer ${API_TOKEN}`,
     Accept: 'application/json',
     'Content-Type': 'application/json',
   },
-  timeout: 3000,
+  timeout: 30000,
 })
 
 function fetchUser() {

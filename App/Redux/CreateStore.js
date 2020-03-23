@@ -13,16 +13,16 @@ import { persistReducer, persistStore } from 'redux-persist'
  */
 import storage from 'redux-persist/lib/storage'
 
-const persistConfig = {
-  key: 'root',
-  storage: storage,
-  /**
-   * Blacklist state that we do not need/want to persist
-   */
-  blacklist: [
-    // 'auth',
-  ],
-}
+// const persistConfig = {
+//   key: 'root',
+//   storage: storage,
+//   /**
+//    * Blacklist state that we do not need/want to persist
+//    */
+//   blacklist: [
+//     // 'auth',
+//   ],
+// }
 
 export default (rootReducer, rootSaga) => {
   const middleware = []
@@ -34,14 +34,14 @@ export default (rootReducer, rootSaga) => {
 
   enhancers.push(applyMiddleware(...middleware))
 
-  // Redux persist
-  const persistedReducer = persistReducer(persistConfig, rootReducer)
+  // // Redux persist
+  // const persistedReducer = persistReducer(persistConfig, rootReducer)
 
-  const store = createStore(persistedReducer, compose(...enhancers))
-  const persistor = persistStore(store)
+  const store = createStore(rootReducer, compose(...enhancers))
+  // const persistor = persistStore(store)
 
   // Kick off the root saga
   sagaMiddleware.run(rootSaga)
 
-  return { store, persistor }
+  return { store }
 }

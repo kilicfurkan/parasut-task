@@ -61,13 +61,14 @@ The boilerplate includes an example (displaying fake user data) from UI componen
 ## Directory layout
 
 - [`App/Components`](App/Components): presentational components
-- [`App/Config`](App/Config): configuration of the application
-- [`App/Containers`](App/Containers): container components, i.e. the application's screens
+- [`App/Config`](App/Config): configuration of the application (I used react-native dotenv)
+- [`App/Screens`](App/Screens): the application's screens
+- [`App/Containers`](App/Containers): container components
 - [`App/Assets`](App/Assets): assets (image, audio files, ...) used by the application
 - [`App/Navigators`](App/Navigators): react navigation navigators 
 - [`App/Sagas`](App/Sagas): redux sagas
 - [`App/Services`](App/Services): application services, e.g. API clients
-- [`App/Stores`](App/Stores): redux [actions, reducers and stores](https://redux.js.org/basics)
+- [`App/Redux`](App/Redux): redux [actions, reducers and stores](https://redux.js.org/basics)
 - [`App/Theme`](App/Theme): base styles for the application
 
 For more information on each directory, click the link and read the directory's README.

@@ -1,8 +1,18 @@
 import { takeLatest, all } from 'redux-saga/effects'
-import { ExampleTypes } from 'App/Stores/Example/Actions'
-import { StartupTypes } from 'App/Stores/Startup/Actions'
-import { fetchUser } from './ExampleSaga'
+
+import { StartupTypes } from 'App/Redux/Startup/Actions'
+
+/* ------------- Types ------------- */
+
+import { MovieTypes } from '../Redux/MovieRedux'
+
+/* ------------- Sagas ------------- */
+
 import { startup } from './StartupSaga'
+import {
+  getDailyTrendingMovies,
+  getWeeklyTrendingMovies,
+} from './MovieSaga'
 
 export default function* root() {
   yield all([
@@ -11,7 +21,8 @@ export default function* root() {
      */
     // Run the startup saga when the application starts
     takeLatest(StartupTypes.STARTUP, startup),
-    // Call `fetchUser()` when a `FETCH_USER` action is triggered
-    takeLatest(ExampleTypes.FETCH_USER, fetchUser),
+
+    takeLatest(MovieTypes.GET_DAILY_TRENDING_MOVIES_IN_PROGRESS, getDailyTrendingMovies),
+    takeLatest(MovieTypes.GET_WEEKLY_TRENDING_MOVIES_IN_PROGRESS, getWeeklyTrendingMovies)
   ])
 }
