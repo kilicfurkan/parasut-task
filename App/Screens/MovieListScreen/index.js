@@ -1,5 +1,5 @@
 import React from 'react'
-import { SafeAreaView, Text, ActivityIndicator } from 'react-native'
+import { SafeAreaView, Text, ActivityIndicator, Alert } from 'react-native'
 import { connect } from 'react-redux'
 
 import MovieList from '../../Containers/MovieList'
@@ -20,6 +20,18 @@ class MovieListScreen extends React.Component {
   componentDidMount() {
     this.props.getDailyTrendingMovies()
     this.props.getWeeklyTrendingMovies()
+  }
+
+  componentDidUpdate(prevProps) {
+    const { daily, weekly } = this.props.movie.trending
+    const { daily: prevDaily, weekly: prevWeekly } = prevProps.movie.trending
+    if (prevDaily.error !== daily.error && daily.error) {
+      Alert.alert(daily.error)
+    }
+
+    if (prevWeekly.error !== weekly.error && weekly.error) {
+      Alert.alert(weekly.error)
+    }
   }
 
   handleChangeTab = (selectedTab) => {
